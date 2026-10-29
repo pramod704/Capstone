@@ -1,8 +1,30 @@
-# End-to-End DevOps Pipeline for a Web Application
+End-to-End DevOps Pipeline for a Web Application
+Project Overview
 
-A learning capstone that tests, containerizes, and deploys a small web service to Amazon EKS. Jenkins orchestrates delivery, Terraform provisions AWS resources, Ansible prepares dedicated Jenkins runners, and Prometheus/Grafana provide monitoring.
+I am developing an end-to-end DevOps pipeline for a web application to automate the complete software delivery lifecycle, from code testing and containerization to deployment, monitoring, and scaling on AWS. This project demonstrates practical implementation of CI/CD, Infrastructure as Code (IaC), containerization, Kubernetes orchestration, configuration management, and observability using industry-standard DevOps tools.
 
-## Architecture
+The solution utilizes Jenkins for Continuous Integration and Continuous Deployment (CI/CD), Terraform for AWS infrastructure provisioning, Ansible for configuration management, Docker for containerization, Amazon Elastic Kubernetes Service (EKS) for orchestration, and Prometheus with Grafana for monitoring and alerting.
+
+Architecture
+
+In this project, I have designed a secure and scalable AWS-based architecture where:
+
+Jenkins orchestrates the entire deployment workflow.
+A dedicated Jenkins runner operates inside the AWS VPC to access the private EKS API endpoint.
+Terraform provisions AWS infrastructure including VPC, EKS, node groups, ECR repositories, and networking components.
+Ansible configures Ubuntu-based Jenkins runner instances.
+Docker packages the application into lightweight containers.
+Amazon EKS hosts and manages Kubernetes workloads.
+Prometheus collects metrics from applications and Kubernetes resources.
+Grafana visualizes system health and performance dashboards.
+Horizontal Pod Autoscaler (HPA) automatically scales application pods based on resource utilization.
+
+To maintain security best practices:
+
+The EKS API endpoint remains private.
+Jenkins controller access is restricted.
+AWS credentials are managed through IAM roles rather than static access keys.
+Sensitive data such as secrets, passwords, Terraform states, and SSH keys are excluded from source control.
 
 ```mermaid
 flowchart LR
